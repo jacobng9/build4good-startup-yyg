@@ -1,0 +1,185 @@
+
+?? finch
+Fewer Applications. More Interviews.
+PRODUCT REQUIREMENTS DOCUMENT
+
+Version1.0StatusDraftDateMarch 28, 2026ProductFinch Web PlatformPrepared byFinch Team
+Sponsored by AggieX · Aggies Create · Meloy Entrepreneurship
+
+
+1. Executive Summary
+Finch is an AI-powered internship application platform built for engineering, computer science, and high-volume student applicants who are frustrated by mass-apply strategies that yield little return. Rather than automating volume, Finch optimizes for interview probability - matching students to high-signal roles, tailoring their materials per application, and increasing recruiter visibility through structured networking support.
+
+The core product is a Chrome extension + web dashboard that connects to a student's LinkedIn profile, generates role-specific resumes and cover letters in seconds, and autofills entire ATS application forms (Greenhouse, Lever, Workday) - reducing a 20-30 minute application process to under 60 seconds. Finch stops at the final review page so the student always submits intentionally.
+
+THE CORE PROPOSITION
+Fewer applications. More interviews.
+
+2. Problem Statement
+2.1 The Student Pain Point
+Students entering competitive internship markets are given two pieces of advice: apply more and network more. Neither comes with a system to actually improve outcomes. The result:
+• High-volume applicants submit 100-200 applications per recruiting cycle with minimal response rates
+• Applications are generic, not tailored to specific roles or ATS keyword requirements
+• Students receive no feedback, face constant ghosting, and burn significant time on repetitive form-filling
+• No tools exist that combine resume optimization, intelligent matching, and application automation in one workflow
+
+2.2 Market Gap
+Existing tools fall into two failure modes: they either auto-apply without optimization (producing noise, not signal), or they provide optimization without automation (requiring manual effort per application). Finch occupies the gap between these extremes - intentional, AI-optimized, and time-efficient.
+
+3. Goals & Success Metrics
+3.1 Product Goals
+1. Reduce time-per-application from 20-30 minutes to under 60 seconds
+2. Increase interview response rate for Finch users vs. unaided applicants
+3. Build a scalable B2C2B distribution model starting with Texas A&M students
+4. Achieve product-market fit within the first recruiting season post-launch
+
+3.2 Success Metrics (KPIs)
+
+Activation% of signups who connect LinkedIn and complete first application within 7 daysTime SavedAvg. application time < 60 seconds (target: 45s median)Interview RateInterview-to-application ratio vs. baseline (students self-reported)RetentionMonth-over-month subscription renewal rate > 70%NPSNet Promoter Score > 50 within first cohortConversionFree-to-paid conversion rate > 15% within first 30 days
+4. Target Audience & User Personas
+4.1 Primary User
+Undergraduate students at R1 universities (initially Texas A&M) with the following profile:
+• Age: 19-23
+• Major: Engineering, Computer Science, or quantitative business
+• Status: Actively applying for competitive internships
+• Behavior: Digitally native, time-constrained, outcome-driven
+• Volume: Submitting 50-200 applications per recruiting cycle with low response rates
+
+4.2 User Personas
+
+Persona A - "The Carpet Bomber"
+A junior CS student who has submitted 150+ applications this semester with a 3% response rate. Applies to everything hoping something sticks. Needs Finch to reduce volume and increase targeting signal. Primary concern: getting any response at all.
+
+Persona B - "The Selective Applier"
+A sophomore Industrial Engineering student applying only to 10-15 top-choice roles. Has a strong resume but spends 45 minutes per application tailoring manually. Needs Finch to automate the tailoring and form-filling work while maintaining quality.
+
+Persona C - "The First-Timer"
+A freshman or sophomore who has never applied to an internship before and is intimidated by the process. Needs Finch as a guide to understand what a good application looks like and where to start.
+
+5. Product Scope
+5.1 In Scope - v1 Launch
+• User onboarding: signup, LinkedIn OAuth connection, profile generation
+• AI-powered resume tailoring per job posting
+• AI-powered cover letter generation per job posting
+• Chrome extension: ATS detection, form autofill (Greenhouse, Lever, Workday)
+• Job browsing and matching dashboard
+• Application history tracking
+• Freemium and paid subscription tiers
+• Marketing website: Home, About, Product / How It Works pages
+
+5.2 Out of Scope - v1
+• Native mobile app (iOS/Android)
+• Recruiter-facing tools or employer portal
+• Direct job posting integrations beyond ATS detection
+• Video interview prep features
+• University LMS/CRM integrations (planned for B2B phase)
+
+6. Feature Requirements
+
+FeaturePriorityEffortNotesUser Signup & LinkedIn OAuthP0MediumCore activation step; profile generation quality depends on LinkedIn data completenessAI Resume Tailoring EngineP0HighLangChain + LaTeX generation; must produce ATS-passing, role-specific resumes in < 10 secAI Cover Letter GenerationP0MediumRole-specific, personalized; tone controls (formal/conversational)Chrome Extension - ATS DetectionP0HighMust detect Greenhouse, Lever, Workday app pages; trigger Finch UI overlayChrome Extension - Form AutofillP0HighFill all fields including file uploads; stop at final review pageJob Dashboard & HistoryP1MediumTrack generated resumes, cover letters, applications; ATS score displayJob Matching FeedP1MediumLinkedIn URL / keyword search integration; relevance scoringPricing & Subscription ManagementP1MediumStripe integration; tier enforcement (app count limits)Email Capture (Marketing Site)P0LowWaitlist collection; confirm + notify on launchContact Form (Marketing Site)P1LowName, email, message; routed to team inboxFAQ Section (Marketing Site)P1LowAccordion UI; answers common objectionsDark Mode (Marketing Site)P2LowToggle; system preference detectionAnimations & Scroll EffectsP2LowIntersectionObserver fade-ins; counter animations; hover statesMobile Responsive DesignP0MediumFull responsive layout; hamburger nav on mobileChrome Extension Download CTAP0LowChrome Web Store link; prominent placement on site
+Priority Legend: P0 = Launch blocker · P1 = High value, launch target · P2 = Nice to have
+
+7. Marketing Website Requirements
+The marketing website (applyfinch.com) is the primary conversion surface for early user acquisition. It must communicate Finch's value proposition clearly, capture leads, and drive signups and Chrome extension downloads.
+
+7.1 Pages
+Home Page
+• Hero: "Turn Applications Into Interviews." headline with sub-copy and dual CTAs
+• Problem / Solution split section
+• Social proof / stats bar (60 sec per app, works on Greenhouse/Lever/Workday, etc.)
+• Feature overview cards (3 features: AI Resume, Chrome Extension, LinkedIn Integration)
+• Email capture waitlist section with success animation
+• FAQ accordion (6+ questions)
+• Footer with logo, links, social icons, and "Share with a friend" CTA
+
+About Page
+• Origin story narrative (Carlos's pain point as the founding moment)
+• Mission & Vision statements
+• Target audience profile
+• Team cards with headshots, names, roles, bios, emails (Nicanor, Jose, Carlos)
+• Sponsors bar: AggieX, Aggies Create, Meloy Entrepreneurship
+• Contact form (Name, Email, Message)
+
+Product / How It Works Page
+• 5-step animated stepper (LinkedIn ? Browse ? Tailor ? Autofill ? Submit)
+• Feature showcase: alternating image + text rows for each key capability
+• Pricing section (see Section 8)
+• Final CTA section: Sign Up Free + Download Chrome Extension
+
+7.2 Design System
+
+Primary Navy#1c3249 - backgrounds, headings, navbarBrand Orange#f7941d - CTAs, highlights, logo primaryBrand Red#ed1c24 - urgency, accents, logo variantWhite#ffffff - backgrounds, text on darkLight Gray#D4D4D4 - dividers, secondary surfacesTypographyNunito or Poppins (rounded sans-serif via Google Fonts)Corner Radius12-16px on cards and buttons; 8px on inputsTonePlayful · Innovative · Approachable (Duolingo × Cluely × Swift.org)
+7.3 Primary CTAs
+• Sign Up / Sign Up Free
+• Download Chrome Extension
+• Purchase / Subscribe
+• Follow on social
+• Share with a friend
+
+8. Pricing Model
+8.1 Monthly Subscriptions (Primary Revenue)
+Semester-based recruiting cycle model. Core plan highlighted as most popular.
+
+PlanPriceApps/moMarginUsersUser ProfileStarter$3.99/mo15 apps~85%26.9%Applying to a few targeted rolesCore ?$6.99/mo40 apps~77%LargestActively recruiting every weekPro$9.99/mo75 apps~70%17.3%Going hard this recruiting seasonMax$12.99/mo120 apps~63%Survey pickApplying to everything competitive
+8.2 One-Time Bundles (Secondary - Casual / First-Time Users)
+
+BundlePriceAppsProfileTrial$1.995 appsTry before committing (~90% margin)Standard$4.9920 appsSpecific list, no subscription (~84% margin)Plus$8.9950 appsOne big push, no ongoing commitment (~78% margin)
+8.3 B2C2B Expansion
+University Partnerships are the planned growth lever for scaling beyond individual users. Target: career services offices at Texas A&M, then other R1 engineering schools. Pricing for institutional licenses TBD based on per-seat or cohort models.
+
+9. Technical Architecture Overview
+9.1 Core Stack
+• Backend: FastAPI (Python), PostgreSQL
+• AI / ML: LangChain, LaTeX resume generation, Hugging Face models
+• Extension: Chrome Manifest V3, content scripts for ATS form detection
+• LinkedIn Integration: LinkedIn scraping / OAuth for profile data ingestion
+• Payments: Stripe (subscription + one-time bundle management)
+• Frontend: React or vanilla JS; Tailwind CSS
+• Hosting: TBD (likely Vercel for frontend, Railway or Render for backend)
+
+9.2 Data Flow
+5. User signs up and connects LinkedIn - profile data scraped and stored
+6. AI generates rich candidate profile (skills, experience, education)
+7. Chrome extension detects ATS application page
+8. Finch fetches job description, runs LLM tailoring against candidate profile
+9. Tailored resume (LaTeX ? PDF) + cover letter generated in < 10 seconds
+10. Extension autofills form fields and uploads PDF; pauses at final review
+11. User reviews and clicks submit manually
+12. Application logged to dashboard with ATS alignment score
+
+10. Key User Stories
+
+Onboarding
+• As a new user, I can sign up with my email and connect my LinkedIn profile so Finch can generate my candidate profile automatically.
+• As a new user, I can install the Finch Chrome extension from the web store so I can start applying on job platforms immediately.
+
+Applying
+• As a student, when I open a job application on Greenhouse, the Finch extension detects it and offers to generate a tailored resume and cover letter for that specific role.
+• As a student, I can review the tailored materials before the extension autofills the form, so I stay in control of every submission.
+• As a student, the extension fills all form fields and uploads my resume PDF but stops at the final review page - I always submit manually.
+
+Dashboard
+• As a user, I can see all my generated applications in one dashboard with ATS scores, resume versions, and cover letters linked per role.
+• As a user, I can search for jobs by pasting a LinkedIn job search URL or entering keywords, then choose how many roles to run.
+
+Billing
+• As a user, I can upgrade or downgrade my subscription tier at any time through my account settings.
+• As a user, I can purchase a one-time bundle if I don't want a recurring subscription.
+
+11. Risks & Mitigations
+
+RiskLikelihoodMitigationATS platforms block extension via ToS or technical countermeasuresMediumMonitor ToS changes; build platform-specific adapters; user always submits manually (not fully automated)LinkedIn scraping restrictions or API rate limitsHighInvest in official LinkedIn OAuth partnership early; cache profile data aggressivelyAI resume quality inconsistency across job typesMediumCurate domain-specific prompt templates; build feedback loop for user ratingsLow conversion from free to paid tierMediumStrong free-tier experience with clear value gates; in-app upgrade prompts tied to usage milestonesSlow user acquisition outside Texas A&MLow (initial)Focus growth on A&M recruiting cycle first; use ambassador program to expand to peer schoolsData privacy concerns (LinkedIn + resume data)Low-MediumClear privacy policy; data used only for application generation; no selling of user data; SOC 2 roadmap
+12. Team
+
+Nicanor Garza-ZazuetaCEO & Co-founder - Industrial Distribution Engineering, Texas A&M. Meloy Fellows Grant recipient. Strategy, sales, team building. nicanor14gz@tamu.eduJose TiradoCTO & Co-founder - Industrial Engineering, Texas A&M. Systems thinking, operations, analytical problem-solving. jmtirador@tamu.eduCarlos Luna PeñaCTO & Co-founder - CS (Cybersecurity minor, Statistics emphasis), Texas A&M. Built original backend. Python, LangChain, LaTeX generation, LinkedIn scraping. carlunpen@tamu.edu
+13. Suggested Roadmap
+
+PhaseTimelineDeliverablesPhase 0Now ? LaunchMarketing website (3 pages), email capture, Chrome extension CTA, waitlistPhase 1Beta (Sem 1)Core extension + autofill (Greenhouse, Lever, Workday), LinkedIn OAuth, resume tailoring, dashboard v1Phase 2GrowthPricing tiers live (Stripe), job matching feed, cover letter generation, dashboard v2 with historyPhase 3ScaleUniversity partnerships, more ATS platforms, mobile-responsive PWA, recruiter visibility tools
+14. References & Resources
+• Current website: applyfinch.com
+• Build4Good brief: tacs.tamu.edu/b4g/startups/Finch
+• Design inspiration: cluely.com · duolingo.com · swift.org
+• Brand assets: Google Drive (logos, headshots, product screenshots, pricing strategy)
+• Sponsors: AggieX, Aggies Create, Meloy Entrepreneurship - Texas A&M University
+
+- End of Document -
