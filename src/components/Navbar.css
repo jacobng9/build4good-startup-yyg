@@ -36,11 +36,12 @@
   text-decoration: none;
   color: var(--text-primary);
   z-index: 1001;
+  flex: 1;
 }
 
 .logo-icon {
-  width: 36px;
-  height: 36px;
+  height: 32px;
+  width: auto;
 }
 
 .logo-text {
@@ -94,7 +95,9 @@
 .navbar-actions {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: var(--space-md);
+  flex: 1;
 }
 
 .navbar-actions-mobile {

@@ -1,0 +1,63 @@
+/* ============================================
+   FAQ Page Styles
+   ============================================ */
+
+.faq-page-section {
+  padding-top: var(--space-4xl);
+}
+
+.faq-list {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-lg) 0;
+  background: none;
+  border: none;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+  gap: var(--space-md);
+  transition: color var(--transition-fast);
+}
+
+.faq-question:hover {
+  color: var(--orange);
+}
+
+.faq-chevron {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform var(--transition-base);
+  color: var(--text-muted);
+}
+
+.faq-item.open .faq-chevron {
+  transform: rotate(180deg);
+  color: var(--orange);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-base);
+}
+
+.faq-answer p {
+  padding-bottom: var(--space-lg);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}

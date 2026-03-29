@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Finch "f" with bird head favicon - matches brand logo -->
+  
+  <!-- F vertical stem -->
+  <path d="M18 28 L18 56 Q18 60 22 60 L28 60 Q32 60 32 56 L32 38 L32 28 Z" fill="#f7941d"/>
+  
+  <!-- F top crossbar -->
+  <path d="M18 28 L42 28 Q46 28 46 32 L46 32 Q46 36 42 36 L18 36 Z" fill="#f7941d"/>
+  
+  <!-- Bird head sitting on top of the f -->
+  <path d="M22 28 C22 20, 22 14, 28 10 C32 7, 38 6, 42 10 C46 14, 44 20, 40 24 C38 26, 34 28, 32 28 Z" fill="#f7941d"/>
+  
+  <!-- Bird eye -->
+  <circle cx="36" cy="15" r="2.8" fill="white"/>
+  
+  <!-- Bird beak -->
+  <path d="M42 12 L50 10 L42 16 Z" fill="#e8880a"/>
+  
+  <!-- Dot/circle above (representing the i-dot style from the logo) -->
+  <circle cx="34" cy="8" r="4" fill="#f7941d"/>
+</svg>

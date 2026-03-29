@@ -21,12 +21,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <Link to="/" className="footer-logo">
-              <svg viewBox="0 0 40 40" className="footer-logo-icon" aria-hidden="true">
-                <circle cx="20" cy="20" r="18" fill="var(--orange)" />
-                <path d="M12 24 C12 18, 16 12, 24 10 C22 14, 22 18, 24 22 C20 20, 16 22, 12 24Z" fill="white" />
-                <circle cx="22" cy="14" r="2" fill="var(--navy)" />
-              </svg>
-              <span>finch</span>
+              <img src="/finch-logo-icon.png" alt="Finch Logo" className="footer-logo-icon" />
             </Link>
             <p className="footer-tagline">Fewer Applications. More Interviews.</p>
             <div className="footer-socials">
@@ -45,7 +40,6 @@ export default function Footer() {
           <div className="footer-column">
             <h4>Product</h4>
             <Link to="/product">How It Works</Link>
-            <Link to="/product#pricing">Pricing</Link>
             <a href="#">Chrome Extension</a>
             <a href="#">AI Resume Builder</a>
           </div>
@@ -60,7 +54,7 @@ export default function Footer() {
 
           <div className="footer-column">
             <h4>Get Started</h4>
-            <a href="#signup">Sign Up Free</a>
+            <Link to="/signup">Sign Up Free</Link>
             <a href="#">Download Extension</a>
             <button onClick={handleShare} className="share-link">Share with a Friend</button>
           </div>

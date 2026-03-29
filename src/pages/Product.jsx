@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import AnimateOnScroll from '../components/AnimateOnScroll';
 import Magnetic from '../components/Magnetic';
 import Tilt from '../components/Tilt';
@@ -47,49 +48,121 @@ const steps = [
   },
 ];
 
+const ResumeSimulation = () => (
+  <div className="sim-resume">
+    <div className="sim-pane">
+      <div className="sim-pane-title">Job Description</div>
+      <div className="sim-line mid"></div>
+      <div className="sim-line short"></div>
+      <div className="sim-line"></div>
+      <div className="sim-line short"></div>
+    </div>
+    <div className="sim-pane">
+      <div className="sim-pane-title">Finch Resume</div>
+      <div className="sim-line short"></div>
+      <div className="sim-line sim-keyword"></div>
+      <div className="sim-line short sim-keyword"></div>
+      <div className="sim-line mid"></div>
+      <div className="sim-scanner"></div>
+    </div>
+  </div>
+);
+
+const CoverLetterSimulation = () => (
+  <div className="sim-cl">
+    <div className="sim-cl-header">
+      <div className="sim-pane-title" style={{margin: 0}}>Cover Letter Editor</div>
+      <div className="sim-cl-dropdown">Tone: Professional ▼</div>
+    </div>
+    <div className="sim-cl-body">
+      <div className="sim-typing-line"></div>
+      <div className="sim-typing-line"></div>
+      <div className="sim-typing-line"></div>
+      <div className="sim-typing-line"></div>
+      <div className="sim-typing-line"></div>
+    </div>
+  </div>
+);
+
+const AutofillSimulation = () => (
+  <div className="sim-form">
+    <div className="sim-form-header">
+      <div className="sim-form-title">Workday Application</div>
+      <div className="sim-btn">Autofill with Finch</div>
+    </div>
+    <div className="sim-input">
+      <span className="sim-input-label">First Name</span>
+      <div className="sim-filled-val"></div>
+      <div className="sim-check"></div>
+    </div>
+    <div className="sim-input">
+      <span className="sim-input-label">LinkedIn URL</span>
+      <div className="sim-filled-val"></div>
+      <div className="sim-check"></div>
+    </div>
+    <div className="sim-input">
+      <span className="sim-input-label">Resume Upload</span>
+      <div className="sim-filled-val"></div>
+      <div className="sim-check"></div>
+    </div>
+  </div>
+);
+
+const DashboardSimulation = () => (
+  <div className="sim-dash">
+    <div className="sim-col">
+      <div className="sim-col-title">Applied (34)</div>
+      <div className="sim-card"></div>
+      <div className="sim-card moving"></div>
+      <div className="sim-card"></div>
+    </div>
+    <div className="sim-col">
+      <div className="sim-col-title">Interview (5)</div>
+      <div className="sim-card"></div>
+    </div>
+    <div className="sim-col">
+      <div className="sim-col-title">Offer (1)</div>
+      <div className="sim-card"></div>
+    </div>
+  </div>
+);
+
 const features = [
   {
     title: 'ATS-Optimized Resumes',
     description: 'Every resume is tailored to the specific job description. Keywords extracted, bullets rewritten, formatting perfected. Your resume passes ATS filters before a recruiter ever sees it.',
     detail: 'Powered by LangChain + LaTeX',
     align: 'left',
+    simulation: <ResumeSimulation />,
   },
   {
     title: 'Personalized Cover Letters',
     description: 'Not a template — a real, role-specific cover letter that connects your experience to the job requirements. Choose your tone: formal, conversational, or balanced.',
     detail: 'Tone controls included',
     align: 'right',
+    simulation: <CoverLetterSimulation />,
   },
   {
     title: 'One-Click Form Autofill',
     description: 'The Chrome extension detects ATS application pages and fills every field — personal info, work history, education, file uploads — all from your Finch profile.',
     detail: 'Greenhouse · Lever · Workday',
     align: 'left',
+    simulation: <AutofillSimulation />,
   },
   {
     title: 'Application Dashboard',
     description: 'Track every application in one place. See your tailored resumes, cover letters, ATS alignment scores, and application status — all organized by role.',
     detail: 'Complete visibility',
     align: 'right',
+    simulation: <DashboardSimulation />,
   },
 ];
 
-const monthlyPlans = [
-  { name: 'Starter', price: '$3.99', period: '/mo', apps: '15 apps/mo', desc: 'A few targeted roles', popular: false },
-  { name: 'Core', price: '$6.99', period: '/mo', apps: '40 apps/mo', desc: 'Actively recruiting weekly', popular: true },
-  { name: 'Pro', price: '$9.99', period: '/mo', apps: '75 apps/mo', desc: 'Going hard this season', popular: false },
-  { name: 'Max', price: '$12.99', period: '/mo', apps: '120 apps/mo', desc: 'Everything competitive', popular: false },
-];
 
-const bundles = [
-  { name: 'Trial', price: '$1.99', apps: '5 apps', desc: 'Try before committing' },
-  { name: 'Standard', price: '$4.99', apps: '20 apps', desc: 'Specific list, no subscription' },
-  { name: 'Plus', price: '$8.99', apps: '50 apps', desc: 'One big push' },
-];
 
 export default function Product() {
   const [activeStep, setActiveStep] = useState(0);
-  const [pricingTab, setPricingTab] = useState('monthly');
+
 
   return (
     <main className="product-page">
@@ -162,13 +235,7 @@ export default function Product() {
                         <span className="mockup-dot"></span>
                         <span className="mockup-dot"></span>
                       </div>
-                      <div className="mockup-content">
-                        <div className="mockup-line w-80"></div>
-                        <div className="mockup-line w-60"></div>
-                        <div className="mockup-line w-70"></div>
-                        <div className="mockup-line w-50"></div>
-                        <div className="mockup-accent"></div>
-                      </div>
+                      {feat.simulation}
                     </div>
                   </div>
                   <div className="showcase-info">
@@ -183,78 +250,7 @@ export default function Product() {
         </div>
       </section>
 
-      {/* ===== PRICING ===== */}
-      <section className="section pricing-section" id="pricing">
-        <div className="container">
-          <AnimateOnScroll>
-            <div className="section-header">
-              <span className="section-label">Pricing</span>
-              <h2>Plans That <span className="gradient-text">Scale With You</span></h2>
-              <p>Start free, upgrade when you're ready. Cancel anytime.</p>
-            </div>
-          </AnimateOnScroll>
 
-          <AnimateOnScroll>
-            <div className="pricing-tabs">
-              <button
-                className={`pricing-tab ${pricingTab === 'monthly' ? 'active' : ''}`}
-                onClick={() => setPricingTab('monthly')}
-                id="tab-monthly"
-              >
-                Monthly Plans
-              </button>
-              <button
-                className={`pricing-tab ${pricingTab === 'bundles' ? 'active' : ''}`}
-                onClick={() => setPricingTab('bundles')}
-                id="tab-bundles"
-              >
-                One-Time Bundles
-              </button>
-            </div>
-          </AnimateOnScroll>
-
-          {pricingTab === 'monthly' ? (
-            <div className="pricing-grid monthly">
-              {monthlyPlans.map((plan, i) => (
-                <AnimateOnScroll key={plan.name} delay={i + 1}>
-                  <Tilt className={`pricing-card ${plan.popular ? 'popular' : ''}`}>
-                    {plan.popular && <span className="popular-badge">Most Popular</span>}
-                    <h3 className="plan-name">{plan.name}</h3>
-                    <div className="plan-price">
-                      <span className="price-amount">{plan.price}</span>
-                      <span className="price-period">{plan.period}</span>
-                    </div>
-                    <span className="plan-apps">{plan.apps}</span>
-                    <p className="plan-desc">{plan.desc}</p>
-                    <a href="#signup" className={`btn ${plan.popular ? 'btn-primary' : 'btn-secondary'} btn-sm`}>
-                      Get Started
-                    </a>
-                  </Tilt>
-                </AnimateOnScroll>
-              ))}
-            </div>
-          ) : (
-            <div className="pricing-grid bundles">
-              {bundles.map((bundle, i) => (
-                <AnimateOnScroll key={bundle.name} delay={i + 1}>
-                  <Tilt className="pricing-card">
-                    <h3 className="plan-name">{bundle.name}</h3>
-                    <div className="plan-price">
-                      <span className="price-amount">{bundle.price}</span>
-                      <span className="price-period">one-time</span>
-                    </div>
-                    <span className="plan-apps">{bundle.apps}</span>
-                    <p className="plan-desc">{bundle.desc}</p>
-                    <a href="#signup" className="btn btn-secondary btn-sm">
-                      Buy Now
-                    </a>
-                  </Tilt>
-                </AnimateOnScroll>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
 
       {/* ===== FINAL CTA ===== */}
       <section className="section final-cta" id="cta">
@@ -265,10 +261,10 @@ export default function Product() {
               <p>Join thousands of students who are applying smarter, not harder.</p>
               <div className="cta-buttons">
                 <Magnetic strength={0.4}>
-                  <a href="#signup" className="btn btn-primary btn-lg" id="final-signup-btn">
+                  <Link to="/signup" className="btn btn-primary btn-lg" id="final-signup-btn">
                     Sign Up Free
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </a>
+                  </Link>
                 </Magnetic>
                 <Magnetic strength={0.4}>
                   <a href="#" className="btn btn-outline-white btn-lg" id="final-extension-btn">

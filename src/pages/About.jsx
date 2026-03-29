@@ -11,20 +11,23 @@ const team = [
     bio: 'Industrial Distribution Engineering, Texas A&M. Meloy Fellows Grant recipient. Drives strategy, sales, and team building.',
     email: 'nicanor14gz@tamu.edu',
     image: '/images/nicanor.png',
+    linkedin: 'https://www.linkedin.com/in/nicanor14gz/',
   },
   {
-    name: 'Jose Tirado',
+    name: 'Jose Tirado-R',
     role: 'CTO & Co-founder',
     bio: 'Industrial Engineering, Texas A&M. Systems thinking, operations, and analytical problem-solving.',
     email: 'jmtirador@tamu.edu',
-    image: '/images/jose.png',
+    image: '/images/jose.jpeg',
+    linkedin: 'https://www.linkedin.com/in/jose-tirado-r/',
   },
   {
     name: 'Carlos Luna Peña',
     role: 'CTO & Co-founder',
     bio: 'CS (Cybersecurity minor, Statistics emphasis), Texas A&M. Built original backend. Python, LangChain, LaTeX generation, LinkedIn scraping.',
     email: 'carlunpen@tamu.edu',
-    image: '/images/carlos.png',
+    image: '/images/carlos.jpeg',
+    linkedin: 'https://www.linkedin.com/in/carlos-luna-pena/',
   },
 ];
 
@@ -94,12 +97,10 @@ export default function About() {
             <AnimateOnScroll delay={2}>
               <div className="origin-values">
                 <Tilt className="value-card">
-                  <div className="value-icon">🎯</div>
                   <h4>Mission</h4>
                   <p>Eliminate the inefficiency of job applications so students can focus on what matters — finding the right role and preparing to excel.</p>
                 </Tilt>
                 <Tilt className="value-card">
-                  <div className="value-icon">🔭</div>
                   <h4>Vision</h4>
                   <p>A world where every qualified student gets a fair shot at their dream internship — regardless of how many hours they can spend applying.</p>
                 </Tilt>
@@ -121,21 +122,18 @@ export default function About() {
           <div className="audience-grid">
             <AnimateOnScroll delay={1}>
               <Tilt className="audience-card glass-card">
-                <div className="audience-emoji">🎯</div>
                 <h4>The Carpet Bomber</h4>
                 <p>150+ applications, 3% response rate. Applies everywhere but nothing sticks. Needs Finch to reduce volume and increase targeting.</p>
               </Tilt>
             </AnimateOnScroll>
             <AnimateOnScroll delay={2}>
               <Tilt className="audience-card glass-card">
-                <div className="audience-emoji">✨</div>
                 <h4>The Selective Applier</h4>
                 <p>Strong resume, 10–15 top-choice roles. Spends 45 min per app tailoring manually. Needs Finch for speed without sacrificing quality.</p>
               </Tilt>
             </AnimateOnScroll>
             <AnimateOnScroll delay={3}>
               <Tilt className="audience-card glass-card">
-                <div className="audience-emoji">🐣</div>
                 <h4>The First-Timer</h4>
                 <p>Never applied before and intimidated by the process. Needs Finch as a guide to understand what a great application looks like.</p>
               </Tilt>
@@ -159,8 +157,10 @@ export default function About() {
               <AnimateOnScroll key={member.name} delay={i + 1}>
                 <Tilt className="team-card">
                   <div className="team-photo">
-                    <img src={member.image} alt={member.name} />
-                    <div className="team-photo-overlay"></div>
+                    <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="team-photo-link" aria-label={`${member.name} on LinkedIn`}>
+                      <img src={member.image} alt={member.name} />
+                      <div className="team-photo-overlay"></div>
+                    </a>
                   </div>
                   <div className="team-info">
                     <h3>{member.name}</h3>
@@ -190,13 +190,19 @@ export default function About() {
           <AnimateOnScroll>
             <div className="sponsors-bar">
               <div className="sponsor-item">
-                <div className="sponsor-logo-placeholder">AggieX</div>
+                <a href="https://aggiex.org/" target="_blank" rel="noopener noreferrer" className="sponsor-link">
+                  <div className="sponsor-logo-placeholder">AggieX</div>
+                </a>
               </div>
               <div className="sponsor-item">
-                <div className="sponsor-logo-placeholder">Aggies Create</div>
+                <a href="https://www.aggiescreate.com/" target="_blank" rel="noopener noreferrer" className="sponsor-link">
+                  <div className="sponsor-logo-placeholder">Aggies Create</div>
+                </a>
               </div>
               <div className="sponsor-item">
-                <div className="sponsor-logo-placeholder">Meloy Entrepreneurship</div>
+                <a href="https://engineering.tamu.edu/student-life/eep/index.html" target="_blank" rel="noopener noreferrer" className="sponsor-link">
+                  <div className="sponsor-logo-placeholder">Meloy Entrepreneurship</div>
+                </a>
               </div>
             </div>
             <p className="sponsors-note">Texas A&M University</p>
@@ -218,7 +224,6 @@ export default function About() {
             <div className="contact-wrapper">
               {submitted ? (
                 <div className="contact-success" id="contact-success">
-                  <div className="success-icon">✅</div>
                   <h3>Message Sent!</h3>
                   <p>Thanks for reaching out. We'll get back to you soon.</p>
                 </div>

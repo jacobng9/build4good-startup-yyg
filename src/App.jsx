@@ -6,6 +6,8 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Product from './pages/Product';
+import FAQ from './pages/FAQ';
+import Signup from './pages/Signup';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -28,6 +30,8 @@ function Layout() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/product" element={<Product />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </div>
       <Footer />

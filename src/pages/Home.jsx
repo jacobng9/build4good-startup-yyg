@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import AnimateOnScroll from '../components/AnimateOnScroll';
 import Magnetic from '../components/Magnetic';
 import Tilt from '../components/Tilt';
@@ -21,30 +22,7 @@ function StatCounter({ end, suffix = '', label }) {
   );
 }
 
-function FAQItem({ question, answer, isOpen, onClick }) {
-  const contentRef = useRef(null);
-  
-  return (
-    <div className={`faq-item ${isOpen ? 'open' : ''}`}>
-      <button className="faq-question" onClick={onClick} aria-expanded={isOpen}>
-        <span>{question}</span>
-        <svg className="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-          <polyline points="6 9 12 15 18 9" />
-        </svg>
-      </button>
-      <div
-        className="faq-answer"
-        ref={contentRef}
-        style={{ maxHeight: isOpen ? contentRef.current?.scrollHeight + 'px' : '0px' }}
-      >
-        <p>{answer}</p>
-      </div>
-    </div>
-  );
-}
-
 export default function Home() {
-  const [openFAQ, setOpenFAQ] = useState(null);
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [emailError, setEmailError] = useState('');
@@ -60,16 +38,6 @@ export default function Home() {
     setTimeout(() => setSubmitted(false), 5000);
     setEmail('');
   };
-
-  const faqs = [
-    { q: 'How does Finch tailor my resume?', a: 'Finch uses AI to analyze the job description and match it with your LinkedIn profile data. It generates a role-specific resume with optimized keywords, reformatted experience bullets, and ATS-compatible formatting — all in under 10 seconds.' },
-    { q: 'Which job platforms does the Chrome extension work with?', a: 'The Finch extension currently supports Greenhouse, Lever, and Workday — the three most common ATS platforms used by major tech companies and Fortune 500 employers. We\'re actively expanding platform support.' },
-    { q: 'Does Finch auto-submit my applications?', a: 'No — Finch always stops at the final review page. You review everything the extension has filled in, then you click submit yourself. You stay in control of every single application.' },
-    { q: 'Is my LinkedIn data safe?', a: 'Absolutely. Your data is used only to generate tailored application materials. We never sell or share your data with third parties. We follow best practices for data security and have a clear privacy policy.' },
-    { q: 'Can I use Finch for free?', a: 'Yes! Our Starter plan begins at just $3.99/month for 15 applications. We also offer one-time trial bundles starting at $1.99 for 5 applications so you can try Finch risk-free before committing.' },
-    { q: 'What makes Finch different from mass-apply tools?', a: 'Mass-apply tools optimize for volume — they blast hundreds of generic applications. Finch optimizes for quality. Every application is tailored to the specific role, giving you a higher probability of landing an interview with fewer total applications.' },
-    { q: 'Which schools can use Finch?', a: 'We\'re launching first at Texas A&M University, but Finch is available to any student. We plan to expand with university partnerships to additional R1 engineering schools soon.' },
-  ];
 
   return (
     <main>
@@ -96,10 +64,10 @@ export default function Home() {
           </p>
           <div className="hero-ctas">
             <Magnetic strength={0.4}>
-              <a href="#signup" className="btn btn-primary btn-lg" id="hero-signup-btn">
+              <Link to="/signup" className="btn btn-primary btn-lg" id="hero-signup-btn">
                 Sign Up Free
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
+              </Link>
             </Magnetic>
             <Magnetic strength={0.4}>
               <a href="#" className="btn btn-secondary btn-lg" id="hero-extension-btn">
@@ -109,11 +77,11 @@ export default function Home() {
             </Magnetic>
           </div>
           <div className="hero-trust">
-            <span>🎓 Built at Texas A&M</span>
+            <span>Built at Texas A&M</span>
             <span className="trust-divider">·</span>
-            <span>⚡ Under 60s per application</span>
+            <span>Under 60s per application</span>
             <span className="trust-divider">·</span>
-            <span>🛡️ You always submit manually</span>
+            <span>You always submit manually</span>
           </div>
         </div>
       </section>
@@ -131,21 +99,18 @@ export default function Home() {
           <div className="problem-grid">
             <AnimateOnScroll delay={1}>
               <Tilt className="problem-card" tiltMaxAngleX={10} tiltMaxAngleY={10}>
-                <div className="problem-icon">📋</div>
                 <h4>Generic Applications</h4>
                 <p>Same resume, same cover letter, every job. ATS systems filter you out before a human ever sees your name.</p>
               </Tilt>
             </AnimateOnScroll>
             <AnimateOnScroll delay={2}>
               <Tilt className="problem-card" tiltMaxAngleX={10} tiltMaxAngleY={10}>
-                <div className="problem-icon">⏳</div>
                 <h4>20–30 Minutes Each</h4>
                 <p>Manually filling forms, uploading documents, re-entering the same data. Every. Single. Time.</p>
               </Tilt>
             </AnimateOnScroll>
             <AnimateOnScroll delay={3}>
               <Tilt className="problem-card" tiltMaxAngleX={10} tiltMaxAngleY={10}>
-                <div className="problem-icon">👻</div>
                 <h4>Zero Feedback</h4>
                 <p>You never know why you got rejected. No feedback loop, no way to improve, just silence.</p>
               </Tilt>
@@ -229,6 +194,90 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== DEMO ===== */}
+      <section className="section demo-section" id="demo">
+        <div className="container">
+          <AnimateOnScroll>
+            <div className="section-header">
+              <span className="section-label">See It In Action</span>
+              <h2>Watch <span className="gradient-text">Finch Work</span></h2>
+              <p>From LinkedIn to submitted application in under 60 seconds. See how Finch transforms your job search workflow.</p>
+            </div>
+          </AnimateOnScroll>
+          <AnimateOnScroll delay={1}>
+            <div className="demo-video-wrapper">
+              <div className="demo-browser-frame">
+                <div className="demo-browser-bar">
+                  <div className="demo-browser-dots">
+                    <span className="demo-dot red"></span>
+                    <span className="demo-dot yellow"></span>
+                    <span className="demo-dot green"></span>
+                  </div>
+                  <div className="demo-browser-url">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14"><path d="M12 2L12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <span>applyfinch.com/demo</span>
+                  </div>
+                </div>
+                <div className="demo-video-container">
+                  <div className="demo-placeholder">
+                    <div className="demo-play-btn">
+                      <svg viewBox="0 0 24 24" fill="var(--white)" width="32" height="32">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
+                    <div className="demo-placeholder-content">
+                      <div className="demo-screen-mockup">
+                        <div className="demo-mock-sidebar">
+                          <div className="demo-mock-logo"></div>
+                          <div className="demo-mock-nav-item active"></div>
+                          <div className="demo-mock-nav-item"></div>
+                          <div className="demo-mock-nav-item"></div>
+                        </div>
+                        <div className="demo-mock-main">
+                          <div className="demo-mock-header"></div>
+                          <div className="demo-mock-cards">
+                            <div className="demo-mock-card">
+                              <div className="demo-mock-card-line w80"></div>
+                              <div className="demo-mock-card-line w60"></div>
+                              <div className="demo-mock-card-tag"></div>
+                            </div>
+                            <div className="demo-mock-card highlight">
+                              <div className="demo-mock-card-line w80"></div>
+                              <div className="demo-mock-card-line w60"></div>
+                              <div className="demo-mock-card-tag"></div>
+                            </div>
+                            <div className="demo-mock-card">
+                              <div className="demo-mock-card-line w80"></div>
+                              <div className="demo-mock-card-line w60"></div>
+                              <div className="demo-mock-card-tag"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <span className="demo-coming-soon">Full demo video coming soon</span>
+                  </div>
+                </div>
+              </div>
+              <div className="demo-features-row">
+                <div className="demo-feature-chip">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--orange)" strokeWidth="2" width="18" height="18"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                  <span>Under 60 seconds</span>
+                </div>
+                <div className="demo-feature-chip">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--orange)" strokeWidth="2" width="18" height="18"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <span>You always review</span>
+                </div>
+                <div className="demo-feature-chip">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--orange)" strokeWidth="2" width="18" height="18"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                  <span>Your data stays safe</span>
+                </div>
+              </div>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       {/* ===== WAITLIST / EMAIL CAPTURE ===== */}
       <section className="section waitlist" id="signup">
         <div className="container">
@@ -240,7 +289,6 @@ export default function Home() {
                 <p>Be the first to know when Finch launches. Get early access and exclusive pricing for founding members.</p>
                 {submitted ? (
                   <div className="waitlist-success" id="waitlist-success">
-                    <div className="success-icon">🎉</div>
                     <h3>You're on the list!</h3>
                     <p>We'll email you when Finch is ready to launch.</p>
                   </div>
@@ -275,30 +323,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== FAQ ===== */}
-      <section className="section faq" id="faq">
-        <div className="container">
-          <AnimateOnScroll>
-            <div className="section-header">
-              <span className="section-label">FAQ</span>
-              <h2>Frequently Asked Questions</h2>
-              <p>Everything you need to know about Finch.</p>
-            </div>
-          </AnimateOnScroll>
-          <div className="faq-list">
-            {faqs.map((faq, i) => (
-              <AnimateOnScroll key={i} delay={Math.min(i + 1, 5)}>
-                <FAQItem
-                  question={faq.q}
-                  answer={faq.a}
-                  isOpen={openFAQ === i}
-                  onClick={() => setOpenFAQ(openFAQ === i ? null : i)}
-                />
-              </AnimateOnScroll>
-            ))}
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
